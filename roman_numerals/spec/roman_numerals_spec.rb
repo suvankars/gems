@@ -22,12 +22,35 @@ describe RomanNumeral do
 
     describe ".valid?" do
 	it "should find wheather an input belongs to 7 valid roman numeral" do
-	    roman_numerals = [ "III", "IV", "VIII", "XIIDI"]
-	    roman_numerals.each do | roman |
+	    inputs = [ "I", "V", "M", "D"]
+	    inputs.each do | roman |
 		numeral = RomanNumeral.new( roman )
 		numeral.valid?.should == true
 	    end	
+
+	    invalid_inputs = [ "B", "A", "S", "U"]
+	    invalid_inputs.each do | roman |
+		numeral = RomanNumeral.new( roman )
+		numeral.valid?.should == true
+	    end
 	end
+
+	it "should check valid combination of roman numerals" do
+	    numerals = [ "III", "IV", "VIII", "XIIDI"]
+	    numerals.each do | roman |
+		numeral = RomanNumeral.new( roman )
+		numeral.valid?.should == true
+	    end
+	end
+
+	it "should check invalid roman numerals combination" do
+	    numerals = [ "DD", "LL", "VVV", "DLLD"]
+	    numerals.each do | roman |
+		numeral = RomanNumeral.new( roman )
+		numeral.valid?.should == false
+	    end
+	end
+
 	it "should find wheather an input is valid decimal number" do
 	    decimal_number = [ 1, 4, 8, 123]
 	    decimal_number.each do | number |
@@ -35,6 +58,9 @@ describe RomanNumeral do
 		numeral.valid?.should == true
 	    end	
 	end
+	
+
+
     end
 
     describe ".to_roman" do
