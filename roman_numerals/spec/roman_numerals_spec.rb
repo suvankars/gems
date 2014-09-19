@@ -31,12 +31,12 @@ describe RomanNumeral do
 	    invalid_inputs = [ "B", "A", "S", "U"]
 	    invalid_inputs.each do | roman |
 		numeral = RomanNumeral.new( roman )
-		numeral.valid?.should == true
+		numeral.valid?.should == false
 	    end
 	end
 
 	it "should check valid combination of roman numerals" do
-	    numerals = [ "III", "IV", "VIII", "XIIDI"]
+	    numerals = [ "III", "IV", "VIII"]
 	    numerals.each do | roman |
 		numeral = RomanNumeral.new( roman )
 		numeral.valid?.should == true
@@ -54,10 +54,18 @@ describe RomanNumeral do
 	it "should find wheather an input is valid decimal number" do
 	    decimal_number = [ 1, 4, 8, 123]
 	    decimal_number.each do | number |
-		numeral = RomanNumeral.new( number )
+		numeral = RomanNumeral.new( number.to_s )
 		numeral.valid?.should == true
 	    end	
 	end
+	
+	    decimal_number = [ 1.12, -8]
+	    decimal_number.each do | number |
+	    	it "should find wheather an input number: #{number.to_s} is INVALID decimal number" do
+				numeral = RomanNumeral.new( number.to_s )
+				numeral.valid?.should == false
+		    end	
+	    end
 	
 
 
