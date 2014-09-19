@@ -79,6 +79,27 @@ describe RomanNumeral do
 		numeral.to_decimal.should == decimal
 	    end
 	end
+
+	numerals = { 'MCMXLIV' => 1944,
+		     'IX' => 9, 
+		     'DLIX' => 559,
+		     'XI' => 11
+		   }
+
+	numerals.each do |roman, decimal|
+	    it "should convert the roman numeral #{roman} to the decimal value #{decimal}" do
+		numeral = RomanNumeral.new( roman )
+		numeral.to_decimal.should == decimal
+	    end
+	end
+
+	numerals = ['DI', 'LL', 'IIII', 'VVLDD', 'IDD']
+	numerals.each do |roman|
+	    it "should NOT convert the roman numeral #{roman} to the decimal value " do
+		numeral = RomanNumeral.new( roman )
+		numeral.to_decimal.should == "Invalid roman numerals"
+	    end
+	end
     end
     
 end
