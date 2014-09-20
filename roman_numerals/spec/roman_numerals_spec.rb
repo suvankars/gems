@@ -71,14 +71,7 @@ describe RomanNumeral do
 
     end
 
-    describe ".to_roman" do
-	base_digits.each do |decimal, roman|
-	    it "should convert the decimal value #{decimal} to the roman numeral #{roman}" do
-		numeral = RomanNumeral.new(decimal)
-		numeral.to_roman.should == roman
-	    end
-	end
-    end
+    
 
     describe ".to_decimal" do
 	base_digits.each do |decimal, roman|
@@ -88,10 +81,20 @@ describe RomanNumeral do
 	    end
 	end
 
+	describe ".to_roman" do
+	base_digits.each do |decimal, roman|
+	    it "should convert the decimal value #{decimal} to the roman numeral #{roman}" do
+		numeral = RomanNumeral.new( decimal )
+		numeral.to_roman.should == roman
+	    end
+	end
+    end
+
 	numerals = { 'MCMXLIV' => 1944,
 		     'IX' => 9, 
 		     'DLIX' => 559,
-		     'XI' => 11
+		     'XI' => 11,
+		     'xvii' => 17
 		   }
 
 	numerals.each do |roman, decimal|
@@ -101,7 +104,7 @@ describe RomanNumeral do
 	    end
 	end
 
-	numerals = ['DI', 'LL', 'IIII', 'VVLDD', 'IDD']
+	numerals = ['VX', 'LL', 'IIII', 'VVLDD', 'IDD']
 	numerals.each do |roman|
 	    it "should NOT convert the roman numeral #{roman} to the decimal value " do
 		numeral = RomanNumeral.new( roman )
