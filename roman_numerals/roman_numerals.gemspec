@@ -1,5 +1,5 @@
 Gem::Specification.new do |spec|
-    spec.name          = "roman-numerals"
+    spec.name          = "roman-numeral"
     spec.version       = "0.0.1"
     spec.authors       = ["Suvankar Satpati"]
     spec.email         = ["suvankar.17@gmail.com"]
