@@ -38,7 +38,7 @@ Convert decimal number to roman numeral
 => "XVII"
 ```
 
-###Basic working principles of a roman-rumeral 
+###Basic working principles of roman-rumeral 
 In order to convert roman numeral to decimal nuber, it works like a **State Machine**.
  
 
