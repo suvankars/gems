@@ -24,14 +24,8 @@ class RomanNumeral
 		}
 	end
 
-	def valid?
-		#Will considered as valid input if input string contains number or roman numeral in correct order 
-		if (numeral.to_s =~ /^\d+$/)
-			return true
-		else
-			!!(numeral.upcase =~ /^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/) 
-		end
-	end
+
+
 
 	def valid_roman?
 		#Will considered as valid input if input string contains number or roman numeral in correct order 
