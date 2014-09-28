@@ -20,102 +20,104 @@ describe RomanNumeral do
 		1000 => 'M'
 	}
 
-    describe ".valid_roman?" do
+	describe ".valid_roman?" do
 		it "should find wheather an input belongs to 7 valid roman numeral" do
-		    inputs = [ "I", "V", "M", "D"]
-		    inputs.each do | roman |
-			numeral = RomanNumeral.new( roman )
-			numeral.valid_roman?.should == true
-		    end	
+			inputs = [ "I", "V", "M", "D", "L"]
+			inputs.each do | roman |
+				numeral = RomanNumeral.new( roman )
+				numeral.valid_roman?.should == true
+			end	
+		end
 
-		    invalid_inputs = [ "B", "A", "S", "U"]
-		    invalid_inputs.each do | roman |
-			numeral = RomanNumeral.new( roman )
-			numeral.valid_roman?.should == false
-		    end
+		it "should find invalid roman numerals" do
+			invalid_inputs = [ "S", "A", "T", "P", "A", "T", "E"]
+			invalid_inputs.each do | roman |
+				numeral = RomanNumeral.new( roman )
+				numeral.valid_roman?.should == false
+			end
 		end
 
 		it "should check valid combination of roman numerals" do
 		    numerals = [ "III", "IV", "VIII"]
 		    numerals.each do | roman |
-			numeral = RomanNumeral.new( roman )
-			numeral.valid_roman?.should == true
+				numeral = RomanNumeral.new( roman )
+				numeral.valid_roman?.should == true
 		    end
 		end
 
 		it "should check invalid roman numerals combination" do
-		    numerals = [ "DD", "LL", "VVV", "DLLD"]
-		    numerals.each do | roman |
-			numeral = RomanNumeral.new( roman )
-			numeral.valid_roman?.should == false
-		    end
+			numerals = [ "DD", "LL", "VVV", "DLLD"]
+			numerals.each do | roman |
+				numeral = RomanNumeral.new( roman )
+				numeral.valid_roman?.should == false
+			end
 		end
 	end
 
 	describe ".valid_decimal?" do
 		it "should find wheather an input is valid decimal number" do
-		    decimal_number = [ 1, 4, 8, 123]
-		    decimal_number.each do | number |
-			numeral = RomanNumeral.new( number.to_s )
-			numeral.valid_decimal?.should == true
-		    end	
+			decimal_number = [ 1, 4, 8, 123]
+			decimal_number.each do | number |
+				numeral = RomanNumeral.new( number.to_s )
+				numeral.valid_decimal?.should == true
+			end	
 		end
-	
-	    decimal_number = [ 1.12, -8]
-	    decimal_number.each do | number |
-	    	it "should find wheather an input number: #{number.to_s} is INVALID decimal number" do
+
+		decimal_number = [ 1.12, -8]
+		decimal_number.each do | number |
+			it "should find wheather an input number: #{number.to_s} is INVALID decimal number" do
 				numeral = RomanNumeral.new( number.to_s )
 				numeral.valid_decimal?.should == false
-		    end	
-	    end
+			end	
+		end
 	end
- 
 
-    describe ".to_decimal" do
+
+	describe ".to_decimal" do
 		base_digits.each do |decimal, roman|
-		    it "should convert the roman numeral #{roman} to the decimal value #{decimal}" do
-			numeral = RomanNumeral.new( roman )
-			numeral.to_decimal.should == decimal
-		    end
+			it "should convert the roman numeral #{roman} to the decimal value #{decimal}" do
+				numeral = RomanNumeral.new( roman )
+				numeral.to_decimal.should == decimal
+			end
 		end
 
 		numerals = { 'MCMXLIV' => 1944,
-		     'IX' => 9, 
-		     'DLIX' => 559,
-		     'XI' => 11,
-		     'xvii' => 17
-		   }
+					 'IX' => 9, 
+				     'DLIX' => 559,
+				     'XI' => 11,
+				     'xvii' => 17
+				   }
 
 		numerals.each do |roman, decimal|
-		    it "should convert the roman numeral #{roman} to the decimal value #{decimal}" do
-			numeral = RomanNumeral.new( roman )
-			numeral.to_decimal.should == decimal
-		    end
+			it "should convert the roman numeral #{roman} to the decimal value #{decimal}" do
+				numeral = RomanNumeral.new( roman )
+				numeral.to_decimal.should == decimal
+			end
 		end
 
 	end
 
 	describe ".to_roman" do
 		base_digits.each do |decimal, roman|
-		    it "should convert the int decimal value #{decimal} to the roman numeral #{roman}" do
-			numeral = RomanNumeral.new( decimal )
-			numeral.to_roman.should == roman
-		    end
+			it "should convert the int decimal value #{decimal} to the roman numeral #{roman}" do
+				numeral = RomanNumeral.new( decimal )
+				numeral.to_roman.should == roman
+			end
 		end
-    	
-    	it "should convert string decimal value to roman numeral" do
+
+		it "should convert string decimal value to roman numeral" do
 			numeral = RomanNumeral.new( "4" )
 			numeral.to_roman.should == "IV"			    		
-    	end
+		end
 
 		numerals = ['VX', 'LL', 'IIII', 'VVLDD', 'IDD']
 		numerals.each do |roman|
-		    it "should NOT convert the roman numeral #{roman} to the decimal value " do
+			it "should NOT convert the roman numeral #{roman} to the decimal value " do
 				numeral = RomanNumeral.new( roman )
 				numeral.to_decimal.should == "Invalid numeral #{roman}"
-		    end
+			end
 		end
-    end
+	end
 
     describe "Conversion from Roman to Decimal and viceversa" do
     	it "should convert roman to roman" do
