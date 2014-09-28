@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
     spec.authors       = ["Suvankar Satpati"]
     spec.email         = ["suvankar.17@gmail.com"]
     spec.description   = %q{Roman numeral converter}
-    spec.summary       = %q{Roman numeral converter}
+    spec.summary       = %q{Convert roman numeral to decimal and viceversa}
     spec.homepage      = "https://github.com/suvankars/gems/tree/master/roman_numerals" 
     spec.license       = "MIT"
 
