@@ -27,32 +27,45 @@ class RomanNumeral
 	def valid?
 		#Will considered as valid input if input string contains number or roman numeral in correct order 
 		if (numeral.to_s =~ /^\d+$/)
-			true
+			return true
 		else
 			!!(numeral.upcase =~ /^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/) 
 		end
 	end
 
+	def valid_roman?
+		#Will considered as valid input if input string contains number or roman numeral in correct order 
+		!!(numeral.to_s.upcase =~ /^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/) 
+	end
+
+	def valid_decimal?
+		!!(numeral.to_s =~ /^\d+$/)
+	end
+
 	def to_decimal
-		if valid?
-			decimal = convert_to 
+		if valid_roman?
+			decimal = convert_to
+		elsif valid_decimal?
+			numeral	 
 		else
-			"Invalid roman numerals"
+			"Invalid numeral #{numeral}"
 		end
 	end
 
 	def to_roman
-		if valid?
-			roman = convert_from 
+		if valid_decimal?
+			roman = convert_from
+		elsif valid_roman?
+			numeral
 		else
-			"Invalid decimal number"
+			"Invalid numeral #{numeral}"
 		end
 		
 	end
 
 	def convert_to
 		value = 0
-			roman_symbols = numeral.upcase
+			roman_symbols = numeral.to_s.upcase
 			numerals_map.values.reverse.each do |symbol|
 				while roman_symbols.start_with? ( symbol )
 					roman_symbols = roman_symbols.slice(symbol.length, roman_symbols.length)
@@ -67,7 +80,7 @@ class RomanNumeral
 
 	def convert_from
 		value = ''
-		decimal_number = numeral
+		decimal_number = numeral.to_i
 		numerals_map.keys.reverse.each do |decimal|
 			while decimal_number >= decimal
 				decimal_number -= decimal
