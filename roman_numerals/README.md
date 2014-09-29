@@ -30,12 +30,21 @@ Convert roman numeral to decimal number
 >> r = RomanNumeral.new("IV")
 >> r.to_decimal
 => 4
+
+>> r = RomanNumeral.new("IVI")
+>> r.to_decimal
+=> "Invalid numeral IVI"
+
 ```
 Convert decimal number to roman numeral
 ```
 >> d = RomanNumeral.new(17)
 >> d.to_roman
 => "XVII"
+
+>> r = RomanNumeral.new(10.23)
+>> r.to_roman
+=> "Invalid numeral 10.23"
 ```
 
 ###Basic working principles of roman-rumeral 
